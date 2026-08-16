@@ -1,0 +1,22 @@
+package com.musyan.services;
+
+import com.musyan.model.Employee;
+import com.musyan.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class EmployeeService {
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    public List<Employee> getAllEmployeeList(){
+
+
+        return employeeRepository.getAllEmployeeList();
+    }
+
+}
