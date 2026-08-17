@@ -1,8 +1,11 @@
-package com.musyan.spring_data_jpa;
+package com.musyan.starter;
 
+import jakarta.persistence.Entity;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.persistence.autoconfigure.EntityScan;
 
+@EntityScan(basePackages = "com.musyan")
 @SpringBootApplication
 public class SpringDataJpaApplication {
 
