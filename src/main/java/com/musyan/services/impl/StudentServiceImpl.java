@@ -1,7 +1,9 @@
 package com.musyan.services.impl;
 
+import com.musyan.dto.DtoCourse;
 import com.musyan.dto.DtoStudent;
 import com.musyan.dto.DtoStudentIU;
+import com.musyan.entites.Course;
 import com.musyan.entites.Student;
 import com.musyan.repository.StudentRepository;
 import com.musyan.services.IStudentService;
@@ -46,14 +48,37 @@ public class StudentServiceImpl implements IStudentService {
 
     @Override
     public DtoStudent getStudentById(int id) {
-        DtoStudent dto = new DtoStudent();
+
+       /* DtoStudent dto = new DtoStudent();
 
         Optional<Student> optinal = studentRepository.findStudentById(id);
         if(optinal.isPresent()) {
             Student dbStudent = optinal.get();
             BeanUtils.copyProperties(dbStudent,dto);
         }
-        return dto;
+        return dto;*/
+
+        DtoStudent dtoStudent = new DtoStudent();
+
+        Optional<Student> optional = studentRepository.findById(id);
+
+        if(optional.isEmpty()){
+            return null;
+        }
+        Student dbStudent = optional.get();
+        BeanUtils.copyProperties(dbStudent,dtoStudent);
+
+        if(dbStudent.getCourses() != null && !dbStudent.getCourses().isEmpty()){
+            for(Course course : dbStudent.getCourses()){
+
+                DtoCourse dtoCourse = new DtoCourse();
+                BeanUtils.copyProperties(course,dtoCourse);
+
+                dtoStudent.getCourses().add(dtoCourse);
+            }
+        }
+        return dtoStudent;
+
     }
 
     @Override
