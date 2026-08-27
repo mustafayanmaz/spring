@@ -2,6 +2,9 @@ package com.musyan.service.impl;
 
 import com.musyan.dto.DtoDepartment;
 import com.musyan.dto.DtoEmployee;
+import com.musyan.exception.BaseException;
+import com.musyan.exception.ErrorMessage;
+import com.musyan.exception.MessageType;
 import com.musyan.model.Department;
 import com.musyan.model.Employee;
 import com.musyan.repository.EmployeeRepository;
@@ -27,7 +30,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
         Optional<Employee> optional = employeeRepository.findById(id);
         if(optional.isEmpty()) {
-            return null;
+            throw new BaseException(new ErrorMessage(MessageType.NO_RECORD_EXIST, id.toString()));
         }
 
         Employee employee = optional.get();
