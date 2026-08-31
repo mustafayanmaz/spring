@@ -1,10 +1,10 @@
-package com.musyan.starter;
+package com.musyan.jwt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class SpringDataJpaApplicationTests {
+class JwtApplicationTests {
 
 	@Test
 	void contextLoads() {
